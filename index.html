@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mouse Shadow</title>
+</head>
+<body>
+
+  <div class="hero">
+    <h1 contenteditable>🔥 SIMPLON 2021 ☕</h1>
+  </div>
+
+  <style>
+  html {
+    color: black;
+    font-family: sans-serif;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+   
+  }
+
+  h1 {
+    text-shadow: 10px 10px 0 rgba(0,0,0,1);
+    font-size: 100px;
+  }
+  </style>
+
+<script>
+    
+  const conteneur = document.querySelector('.hero');
+  const montitre = conteneur.querySelector('h1');
+  const distance = 500; // 500px
+
+  function textOmbre(e) {
+    const { offsetWidth: width, offsetHeight: height } = conteneur;
+    let { offsetX: horiz, offsetY: vertic } = e;
+      
+    if (this !== e.target) {
+      horiz = horiz + e.target.offsetLeft;
+      vertic = vertic + e.target.offsetTop;
+    }
+
+    const distanceHoriz = Math.round((horiz / width * distance) - (distance / 2));
+    const distanceVertic = Math.round((vertic / height * distance) - (distance / 2));
+
+    montitre.style.textShadow = `
+      ${distanceHoriz}px ${distanceVertic}px 0 red,
+      ${distanceHoriz * -1}px ${distanceVertic}px 0 orange,
+      ${distanceVertic}px ${distanceHoriz * -1}px 0 lime,
+      ${distanceVertic * -1}px ${distanceHoriz}px 0 purple
+    `;
+
+  }
+
+  conteneur.addEventListener('mousemove', textOmbre);
+    
+</script>
+</body>
+</html>
+
+
+
+
+
